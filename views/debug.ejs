@@ -1,0 +1,79 @@
+<%- include('partials/header') %>
+
+<div class="container">
+    <h2>API Test Page</h2>
+    
+    <!-- Test Delete Form -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Test Delete (Hidden Input Method)</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/suppliers/test-id" onsubmit="event.preventDefault(); console.log('Form submitted with hidden input'); return false;">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-danger">Test Delete (Hidden Input)</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Test Update Form -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Test Update (Hidden Input Method)</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/suppliers/test-id" onsubmit="event.preventDefault(); console.log('Form submitted with hidden input'); return false;">
+                <input type="hidden" name="_method" value="PUT">
+                <input type="text" name="name" value="Test Name" class="form-control mb-2">
+                <button type="submit" class="btn btn-warning">Test Update (Hidden Input)</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Test Query Method -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Test Delete (Query String Method)</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/suppliers/test-id?_method=DELETE" onsubmit="event.preventDefault(); console.log('Form submitted with query string'); return false;">
+                <button type="submit" class="btn btn-danger">Test Delete (Query String)</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Debug Info -->
+    <div class="card">
+        <div class="card-header">
+            <h5>Debug Information</h5>
+        </div>
+        <div class="card-body">
+            <p><strong>Method Override Configuration:</strong> _method</p>
+            <p><strong>Current URL:</strong> <span id="currentUrl"></span></p>
+            <p><strong>User Agent:</strong> <span id="userAgent"></span></p>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('currentUrl').textContent = window.location.href;
+document.getElementById('userAgent').textContent = navigator.userAgent;
+
+// Log all form submissions
+document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        console.log('Form submission details:');
+        console.log('Action:', this.action);
+        console.log('Method:', this.method);
+        console.log('Form Data:', new FormData(this));
+        
+        // Log all form elements
+        const formData = new FormData(this);
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+        }
+    });
+});
+</script>
+
+<%- include('partials/footer') %>

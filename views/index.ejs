@@ -1,0 +1,179 @@
+<%- include('partials/header') %>
+
+<!-- Hero Section with Bootstrap Jumbotron Style -->
+<div class="bg-gradient text-center py-5 mb-5 rounded-3" style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="display-4 text-white fw-bold mb-3">
+                    <i class="fas fa-boxes"></i> Product Supplier Management
+                </h1>
+                <p class="lead text-light mb-4">Quản lý sản phẩm và nhà cung cấp một cách hiệu quả với giao diện hiện đại</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="/suppliers" class="btn btn-light btn-lg px-4">
+                        <i class="fas fa-truck"></i> Nhà cung cấp
+                    </a>
+                    <a href="/products" class="btn btn-outline-light btn-lg px-4">
+                        <i class="fas fa-box"></i> Sản phẩm
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Feature Cards with Bootstrap Grid -->
+<div class="row g-4 mb-5">
+    <div class="col-lg-6">
+        <div class="card h-100 shadow-lg border-0">
+            <div class="card-body text-center p-5">
+                <div class="feature-icon bg-primary bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 80px; height: 80px;">
+                    <i class="fas fa-truck fa-2x"></i>
+                </div>
+                <h3 class="card-title text-primary mb-3">Quản lý Nhà cung cấp</h3>
+                <p class="card-text text-muted mb-4">Quản lý thông tin nhà cung cấp bao gồm tên, địa chỉ, số điện thoại. Thêm, sửa, xóa và xem chi tiết nhà cung cấp.</p>
+                <div class="d-grid gap-2 d-md-block">
+                    <a href="/suppliers" class="btn btn-primary btn-lg me-2">
+                        <i class="fas fa-list"></i> Xem tất cả
+                    </a>
+                    <a href="/suppliers/new" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-plus"></i> Thêm mới
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-6">
+        <div class="card h-100 shadow-lg border-0">
+            <div class="card-body text-center p-5">
+                <div class="feature-icon bg-success bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 80px; height: 80px;">
+                    <i class="fas fa-box fa-2x"></i>
+                </div>
+                <h3 class="card-title text-success mb-3">Quản lý Sản phẩm</h3>
+                <p class="card-text text-muted mb-4">Quản lý thông tin sản phẩm bao gồm tên, giá, số lượng và nhà cung cấp. Theo dõi inventory và liên kết với suppliers.</p>
+                <div class="d-grid gap-2 d-md-block">
+                    <a href="/products" class="btn btn-success btn-lg me-2">
+                        <i class="fas fa-list"></i> Xem tất cả
+                    </a>
+                    <a href="/products/new" class="btn btn-outline-success btn-lg">
+                        <i class="fas fa-plus"></i> Thêm mới
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Statistics and Features Section -->
+<div class="row g-4 mb-5">
+    <div class="col-12">
+        <div class="card shadow border-0">
+            <div class="card-header bg-light border-0">
+                <h4 class="card-title mb-0">
+                    <i class="fas fa-chart-line text-info"></i> Tính năng hệ thống
+                </h4>
+            </div>
+            <div class="card-body p-4">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center p-3 bg-primary bg-opacity-10 rounded-3">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-cogs fa-2x text-primary"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1">CRUD Operations</h6>
+                                <p class="mb-0 text-muted small">Tạo, đọc, cập nhật, xóa</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center p-3 bg-success bg-opacity-10 rounded-3">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-mobile-alt fa-2x text-success"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1">Responsive Design</h6>
+                                <p class="mb-0 text-muted small">Tương thích mọi thiết bị</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center p-3 bg-warning bg-opacity-10 rounded-3">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-shield-alt fa-2x text-warning"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1">Data Validation</h6>
+                                <p class="mb-0 text-muted small">Kiểm tra dữ liệu đầu vào</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr class="my-4">
+                
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center p-3 bg-info bg-opacity-10 rounded-3">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-database fa-2x text-info"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1">MongoDB Integration</h6>
+                                <p class="mb-0 text-muted small">Cơ sở dữ liệu NoSQL</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center p-3 bg-danger bg-opacity-10 rounded-3">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-sitemap fa-2x text-danger"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1">MVC Architecture</h6>
+                                <p class="mb-0 text-muted small">Kiến trúc rõ ràng</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center p-3 bg-secondary bg-opacity-10 rounded-3">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-link fa-2x text-secondary"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1">Relationship Management</h6>
+                                <p class="mb-0 text-muted small">Quản lý liên kết dữ liệu</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions Section -->
+<div class="row g-4">
+    <div class="col-12">
+        <div class="card bg-light border-0">
+            <div class="card-body text-center p-5">
+                <h4 class="mb-3"><i class="fas fa-rocket text-primary"></i> Bắt đầu nhanh</h4>
+                <p class="text-muted mb-4">Chọn hành động để bắt đầu quản lý dữ liệu của bạn</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="/suppliers/new" class="btn btn-primary btn-lg">
+                        <i class="fas fa-plus"></i> Thêm nhà cung cấp
+                    </a>
+                    <a href="/products/new" class="btn btn-success btn-lg">
+                        <i class="fas fa-plus"></i> Thêm sản phẩm
+                    </a>
+                    <a href="/suppliers" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-eye"></i> Xem dữ liệu
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,80 @@
+<%- include('../partials/header') %>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3><i class="fas fa-plus"></i> <%= title %></h3>
+            </div>
+            <div class="card-body">
+                <% if (typeof error !== 'undefined') { %>
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle"></i> <%= error %>
+                    </div>
+                <% } %>
+                
+                <form method="POST" action="/suppliers">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">
+                            <i class="fas fa-id-badge"></i> Supplier Name <span class="text-danger">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="name" 
+                            name="name" 
+                            value="<%= typeof supplier !== 'undefined' ? supplier.name || '' : '' %>"
+                            placeholder="Enter supplier name"
+                            required
+                            maxlength="100"
+                        >
+                        <div class="form-text">Maximum 100 characters</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="address" class="form-label">
+                            <i class="fas fa-map-marker-alt"></i> Address <span class="text-danger">*</span>
+                        </label>
+                        <textarea 
+                            class="form-control" 
+                            id="address" 
+                            name="address" 
+                            rows="3"
+                            placeholder="Enter supplier address"
+                            required
+                            maxlength="255"
+                        ><%= typeof supplier !== 'undefined' ? supplier.address || '' : '' %></textarea>
+                        <div class="form-text">Maximum 255 characters</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">
+                            <i class="fas fa-phone"></i> Phone Number <span class="text-danger">*</span>
+                        </label>
+                        <input 
+                            type="tel" 
+                            class="form-control" 
+                            id="phone" 
+                            name="phone" 
+                            value="<%= typeof supplier !== 'undefined' ? supplier.phone || '' : '' %>"
+                            placeholder="Enter phone number (e.g., +84 123 456 789)"
+                            required
+                        >
+                        <div class="form-text">Enter a valid phone number</div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="/suppliers" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Create Supplier
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

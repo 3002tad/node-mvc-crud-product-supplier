@@ -1,0 +1,159 @@
+<%- include('../partials/header') %>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h3><i class="fas fa-box"></i> <%= title %></h3>
+                <div>
+                    <a href="/products/<%= product._id %>/edit" class="btn btn-warning">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <form method="POST" action="/products/<%= product._id %>" class="d-inline" onsubmit="return confirmDelete('product')">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-tag"></i> Product Information</h5>
+                        <table class="table table-borderless">
+                            <tr>
+                                <th width="30%">Name:</th>
+                                <td><strong><%= product.name %></strong></td>
+                            </tr>
+                            <tr>
+                                <th>Price:</th>
+                                <td>
+                                    <span class="badge bg-success fs-6">$<%= product.price.toFixed(2) %></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Quantity:</th>
+                                <td>
+                                    <span class="badge <%= product.quantity > 0 ? 'bg-info' : 'bg-warning' %> fs-6">
+                                        <%= product.quantity %> units
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Total Value:</th>
+                                <td>
+                                    <strong>$<%= (product.price * product.quantity).toFixed(2) %></strong>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-info-circle"></i> System Information</h5>
+                        <table class="table table-borderless">
+                            <tr>
+                                <th width="30%">Created:</th>
+                                <td><%= product.createdAt.toLocaleDateString() %> at <%= product.createdAt.toLocaleTimeString() %></td>
+                            </tr>
+                            <tr>
+                                <th>Updated:</th>
+                                <td><%= product.updatedAt.toLocaleDateString() %> at <%= product.updatedAt.toLocaleTimeString() %></td>
+                            </tr>
+                            <tr>
+                                <th>ID:</th>
+                                <td><code><%= product._id %></code></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-truck"></i> Supplier Information</h5>
+            </div>
+            <div class="card-body">
+                <% if (product.supplierId) { %>
+                    <div class="text-center mb-3">
+                        <i class="fas fa-truck fa-2x text-primary"></i>
+                    </div>
+                    <table class="table table-borderless table-sm">
+                        <tr>
+                            <th>Name:</th>
+                            <td>
+                                <a href="/suppliers/<%= product.supplierId._id %>" class="text-decoration-none">
+                                    <strong><%= product.supplierId.name %></strong>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Address:</th>
+                            <td><%= product.supplierId.address %></td>
+                        </tr>
+                        <tr>
+                            <th>Phone:</th>
+                            <td>
+                                <a href="tel:<%= product.supplierId.phone %>">
+                                    <i class="fas fa-phone"></i> <%= product.supplierId.phone %>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <div class="d-grid gap-2">
+                        <a href="/suppliers/<%= product.supplierId._id %>" class="btn btn-outline-primary">
+                            <i class="fas fa-eye"></i> View Supplier Details
+                        </a>
+                        <a href="/suppliers/<%= product.supplierId._id %>/edit" class="btn btn-outline-warning">
+                            <i class="fas fa-edit"></i> Edit Supplier
+                        </a>
+                    </div>
+                <% } else { %>
+                    <div class="text-center text-muted">
+                        <i class="fas fa-exclamation-triangle fa-2x mb-2"></i>
+                        <p>No supplier assigned</p>
+                        <a href="/products/<%= product._id %>/edit" class="btn btn-outline-warning">
+                            <i class="fas fa-edit"></i> Assign Supplier
+                        </a>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h6><i class="fas fa-chart-bar"></i> Quick Stats</h6>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-6">
+                        <div class="border-end">
+                            <h4 class="text-success">$<%= product.price.toFixed(2) %></h4>
+                            <small class="text-muted">Unit Price</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="text-info"><%= product.quantity %></h4>
+                        <small class="text-muted">In Stock</small>
+                    </div>
+                </div>
+                <hr>
+                <div class="text-center">
+                    <h5 class="text-primary">$<%= (product.price * product.quantity).toFixed(2) %></h5>
+                    <small class="text-muted">Total Inventory Value</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a href="/products" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back to Products
+    </a>
+</div>
+
+<%- include('../partials/footer') %>

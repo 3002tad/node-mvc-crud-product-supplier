@@ -1,0 +1,104 @@
+<%- include('../partials/header') %>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="fas fa-box"></i> <%= title %></h2>
+    <a href="/products/new" class="btn btn-success">
+        <i class="fas fa-plus"></i> Add New Product
+    </a>
+</div>
+
+<% if (typeof error !== 'undefined') { %>
+    <div class="alert alert-danger">
+        <i class="fas fa-exclamation-triangle"></i> <%= error %>
+    </div>
+<% } %>
+
+<div class="card">
+    <div class="card-body">
+        <% if (products.length === 0) { %>
+            <div class="text-center py-5">
+                <i class="fas fa-box fa-3x text-muted mb-3"></i>
+                <h4 class="text-muted">No products found</h4>
+                <p class="text-muted">Start by adding your first product</p>
+                <a href="/products/new" class="btn btn-success">
+                    <i class="fas fa-plus"></i> Add First Product
+                </a>
+            </div>
+        <% } else { %>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th><i class="fas fa-tag"></i> Name</th>
+                            <th><i class="fas fa-dollar-sign"></i> Price</th>
+                            <th><i class="fas fa-cubes"></i> Quantity</th>
+                            <th><i class="fas fa-truck"></i> Supplier</th>
+                            <th><i class="fas fa-calendar"></i> Created</th>
+                            <th class="text-center"><i class="fas fa-cogs"></i> Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% products.forEach(product => { %>
+                            <tr>
+                                <td>
+                                    <strong><%= product.name %></strong>
+                                </td>
+                                <td>
+                                    <span class="badge bg-success">$<%= product.price.toFixed(2) %></span>
+                                </td>
+                                <td>
+                                    <span class="badge <%= product.quantity > 0 ? 'bg-info' : 'bg-warning' %>">
+                                        <%= product.quantity %>
+                                    </span>
+                                </td>
+                                <td>
+                                    <% if (product.supplierId) { %>
+                                        <a href="/suppliers/<%= product.supplierId._id %>" class="text-decoration-none">
+                                            <i class="fas fa-truck"></i> <%= product.supplierId.name %>
+                                        </a>
+                                    <% } else { %>
+                                        <span class="text-muted">No supplier</span>
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        <%= product.createdAt.toLocaleDateString() %>
+                                    </small>
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group">
+                                        <a href="/products/<%= product._id %>" class="btn btn-sm btn-outline-info" title="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a href="/products/<%= product._id %>/edit" class="btn btn-sm btn-outline-warning" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <form method="POST" action="/products/<%= product._id %>" class="d-inline" onsubmit="return confirmDelete('product')">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <small class="text-muted">
+                    Showing <%= products.length %> product(s)
+                </small>
+                <div>
+                    <a href="/suppliers" class="btn btn-outline-secondary">
+                        <i class="fas fa-truck"></i> View Suppliers
+                    </a>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
