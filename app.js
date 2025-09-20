@@ -27,8 +27,17 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Support both query string and form body method override
-app.use(methodOverride('_method')); // form body
-//app.use(methodOverride('_method', { methods: ['GET', 'POST'] })); // query string
+// Support override via hidden input _method in form bodies
+app.use(methodOverride(function (req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+        const method = req.body._method;
+        delete req.body._method;
+        return method;
+    }
+}));
+
+// (Optional) also support query string ?_method=DELETE
+app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Logging middleware for debugging
